@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Whack A Mole</title>
+    <link
+      rel="icon"
+      href="assets/img/mole.svg"
+      type="image/svg"
+      sizes="16x16"
+    />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <h1>Whack-a-mole <span class="score">0</span></h1>
+    <div class="container-fluid">
+      <button>START</button>
+      <div class="game row">
+        <div class="hole col-xs-4 hole1">
+          <div class="mole"></div>
+        </div>
+        <div class="hole col-xs-4 hole2">
+          <div class="mole"></div>
+        </div>
+        <div class="hole col-xs-4 hole3">
+          <div class="mole"></div>
+        </div>
+        <div class="hole col-xs-4 hole4">
+          <div class="mole"></div>
+        </div>
+        <div class="hole col-xs-4 hole5">
+          <div class="mole"></div>
+        </div>
+        <div class="hole col-xs-4 hole6">
+          <div class="mole"></div>
+        </div>
+      </div>
+    </div>
+    <div class="control">
+      <div>
+        <label for="minTime">min time</label>
+        <input name="minTime" type="text" value="200" />
+      </div>
+      <div>
+        <label for="maxTime">max time</label>
+        <input name="maxTime" type="text" value="2000" />
+      </div>
+      <div>
+        <label for="gameTime">game time</label>
+        <input name="gameTime" type="text" value="10000" />
+      </div>
+      <div class="hidden gameOver">Game Over</div>
+    </div>
+    <div class="hidden-Sound">
+      <audio class="hit-sound" controls>
+        <source src="assets/audio/hit.mp3" type="audio/mp3" />
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+    <script src="scripts/script.js"></script>
+  </body>
+</html>
