@@ -35,28 +35,32 @@ const game = (() => {
 
     // game mechanism
     const peep = () => {
-        const time = timeCreation(parseInt(min.value), parseInt(max.value)) //get a random time to determine how long mole should peep
-        const hole = selectedHole() //get the random hole from the randomHole function
-        hole.classList.add('up') //add the CSS class so selected mole can "pop up"
-        timeout = setTimeout(() => {
-            hole.classList.remove('up') //make the selected mole "pop down" after a random time
-            if (!end) peep();
-        }, time)
-        //console.log(time, hole)
+        if (!end) {
+            const time = timeCreation(parseInt(min.value), parseInt(max.value)) //get a random time to determine how long mole should peep
+            const hole = selectedHole() //get the random hole from the randomHole function
+            hole.classList.add('up') //add the CSS class so selected mole can "pop up"
+            timeout = setTimeout(() => {
+                hole.classList.remove('up') //make the selected mole "pop down" after a random time
+                if (!end) peep();
+            }, time)
+            //console.log(time, hole)
+        }
     }
 
     // hit the mole
     const bonk = (e) => {
-        if (!e.isTrusted) return; // 7asby allah w n3ma el wakeel ya kalb ya 5asees (cheater)
-        if (isPlaying(sound)) {
-            sound.pause()
-            sound.currentTime = 0
+        if(!end) {
+            if (!e.isTrusted) return; // 7asby allah w n3ma el wakeel ya kalb ya 5asees (cheater)
+            if (isPlaying(sound)) {
+                sound.pause()
+                sound.currentTime = 0
+            }
+            score = score + 1
+            sound.play()
+            scoreBoard.textContent = score
+            e.currentTarget.parentNode.classList.remove('up') //make the selected mole "pop down" after a bonk (click)
+            //this.parentNode //this refers to item clicked (Tranditional Function)
         }
-        score = score + 1
-        sound.play()
-        scoreBoard.textContent = score
-        e.currentTarget.parentNode.classList.remove('up') //make the selected mole "pop down" after a bonk (click)
-        //this.parentNode //this refers to item clicked (Tranditional Function)
     }
     moles.forEach(mole => mole.addEventListener('click', bonk))
 
